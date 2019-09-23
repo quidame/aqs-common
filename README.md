@@ -8,9 +8,12 @@ The license is GPLv3.
 
 This AQS would provide (this list is currently my todo list):
 
+- [`skeleton`](https://github.com/quidame/aqs-role-skeleton):
+  a template role.
+
 - [`filesystems`](https://github.com/quidame/aqs-role-filesystems):
   a role to manage local filesystems and Logical Volumes.
 - [`iptables`](https://github.com/quidame/aqs-role-iptables):
-  a role to manage iptables ruleset
+  a role to manage iptables ruleset.
 - [`packages`](https://github.com/quidame/aqs-role-packages):
-  a role to manage debian packages and their configuration (debconf)
+  a role to manage debian packages and their configuration (debconf).
