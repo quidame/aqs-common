@@ -1,0 +1,28 @@
+#!/bin/bash
+set -eu
+
+DIR="$(cd ${0%/*}; echo ${PWD})"
+
+# Init the role from a custom skeleton
+ansible-galaxy init \
+    --offline \
+    --init-path ${DIR}/.. \
+    --role-skeleton ${DIR}/../aqs-role-skeleton \
+    ${1}
+
+mv ${DIR}/../${1} ${DIR}/../aqs-role-${1}
+cd ${DIR}/../aqs-role-${1}
+
+git init
+git add .
+git commit -m "Init role '${1}' (aqs-role-${1})"
+
+# Create the repo on github
+curl -u "$(pass show github.com/https)" https://api.github.com/user/repos -d "{\"name\": \"aqs-role-${1}\"}"
+
+git remote add origin ssh://git@github.com/quidame/aqs-role-${1}
+git push --set-upstream origin master
+git checkout -b devel
+git push --set-upstream origin devel
+
+# vim: et sts=4 sw=4 ts=4
